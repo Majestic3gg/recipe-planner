@@ -1,5 +1,7 @@
 const express = require('express');
-const connectDB = require('./db.js');
+const connectDB = require('./db');
+const recipeRoutes = require('./routes/recipes');
+const mealPlanRoutes = require('./routes/mealPlans');
 require('dotenv').config();
 
 const app = express();
@@ -11,7 +13,9 @@ connectDB();
 // Middleware
 app.use(express.json());
 
-// Routes (to be added later)
+// Routes
+app.use('/api/recipes', recipeRoutes);
+app.use('/api/mealplans', mealPlanRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
